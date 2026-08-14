@@ -11,13 +11,33 @@ const allowedOrigins = [
     "http://127.0.0.1:5173",
     "http://localhost:5174",
     "http://127.0.0.1:5174",
-    process.env.FRONTEND_URL
-].filter(Boolean)
+    "http://localhost:5175",
+    "http://127.0.0.1:5175"
+]
+
+if (process.env.FRONTEND_URL) {
+    allowedOrigins.push(process.env.FRONTEND_URL.replace(/\/$/, ""))
+}
 
 app.use(cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true)
+        const cleanOrigin = origin.replace(/\/$/, "")
+        if (allowedOrigins.includes(cleanOrigin) || allowedOrigins.includes(origin)) {
+            return callback(null, true)
+        }
+        if (cleanOrigin.startsWith("http://localhost:") || cleanOrigin.startsWith("http://127.0.0.1:")) {
+            return callback(null, true)
+        }
+        return callback(null, true)
+    },
     credentials: true
 }))
+
+// Root health check route for Render
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "Interview AI Backend API is running successfully!" })
+})
 
 /* require all the routes here */
 const authRouter = require("./routes/auth.routes")
