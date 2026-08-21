@@ -18,3 +18,33 @@ body,
 .highlight{
     color: #d20d3b;
 }
+
+.loading-screen {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #0d1117;
+    color: #e6edf3;
+    padding: 2rem;
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        animation: pulse 1.8s infinite ease-in-out;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}

@@ -477,3 +477,116 @@ $severity-low: #3fb950;
         border-color: rgba($severity-low, 0.25);
     }
 }
+
+// ── Responsive Design Media Queries ───────────────────────────────────────────
+@media (max-width: 992px) {
+    .interview-page {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .interview-layout {
+        flex-direction: column;
+        border-radius: 0.5rem;
+    }
+
+    .interview-divider {
+        display: none;
+    }
+
+    .interview-nav {
+        width: 100%;
+        padding: 1.25rem 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        order: 1;
+        border-bottom: 1px solid $border-color;
+
+        .nav-content {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            width: 100%;
+            gap: 0.5rem;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        &__label {
+            display: none;
+        }
+
+        &__item {
+            white-space: nowrap;
+            flex-shrink: 0;
+            padding: 0.5rem 0.75rem;
+            width: auto;
+            justify-content: center;
+        }
+
+        .button.primary-button {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            padding-block: 0.65rem;
+        }
+    }
+
+    .interview-sidebar {
+        width: 100%;
+        padding: 1.25rem 1rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        order: 2;
+        border-bottom: 1px solid $border-color;
+
+        .match-score {
+            flex: 1;
+            min-width: 160px;
+            align-items: center;
+        }
+
+        .sidebar-divider {
+            display: none;
+        }
+
+        .skill-gaps {
+            flex: 1.5;
+            min-width: 220px;
+        }
+    }
+
+    .interview-content {
+        width: 100%;
+        padding: 1.25rem 1rem;
+        order: 3;
+        max-height: none;
+        overflow-y: visible;
+        padding-bottom: 3rem;
+
+        section {
+            min-height: auto;
+        }
+    }
+
+    .roadmap-list {
+        &::before {
+            left: 16px;
+        }
+    }
+
+    .roadmap-day {
+        padding-left: 2.25rem;
+
+        &::before {
+            left: 9px;
+        }
+    }
+}
