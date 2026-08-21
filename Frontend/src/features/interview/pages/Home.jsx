@@ -53,7 +53,11 @@ const Home = () => {
     const handleGenerateReport = async () => {
         const resumeFile = selectedFile || resumeInputRef.current?.files?.[0]
         const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-        navigate(`/interview/${data._id}`)
+        if (data && data._id) {
+            navigate(`/interview/${data._id}`)
+        } else {
+            alert("Could not generate interview plan. Please verify that both your network and inputs are correct.")
+        }
     }
 
     if (loading) {

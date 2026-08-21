@@ -6,6 +6,12 @@ const app = express()
 
 app.use(express.json())
 app.use(cookieParser())
+
+// Simple request logger
+app.use((req, res, next) => {
+    console.log(`[Backend] ${req.method} ${req.url} - Origin: ${req.headers.origin}`);
+    next();
+})
 const allowedOrigins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
